@@ -55,7 +55,9 @@ open class LocationAnnotationNode: LocationNode {
     ///An image to use for the annotation
     ///When viewed from a distance, the annotation will be seen at the size provided
     ///e.g. if the size is 100x100px, the annotation will take up approx 100x100 points on screen.
-    public let image: UIImage
+    // public let image: UIImage
+    
+    public let label: UILabel
     
     ///Subnodes and adjustments should be applied to this subnode
     ///Required to allow scaling at the same time as having a 2D 'billboard' appearance
@@ -68,15 +70,16 @@ open class LocationAnnotationNode: LocationNode {
     ///For landmarks in the distance, the default is correct
     public var scaleRelativeToDistance = false
     
-    public init(location: CLLocation?, image: UIImage) {
-        self.image = image
+    public init(location: CLLocation?, label: UILabel) {
+        self.label = label
         // Scaling image relative to distance so it is not a fixed size
         scaleRelativeToDistance = true
         
-        let plane = SCNPlane(width: image.size.width / 100, height: image.size.height / 100)
-        plane.firstMaterial!.diffuse.contents = image
+        // TODO make this not just hardcoded you fool
+        let plane = SCNPlane(width: 100, height: 100)
+        plane.firstMaterial!.diffuse.contents = label
         plane.firstMaterial!.lightingModel = .constant
-        
+
         annotationNode = SCNNode()
         annotationNode.geometry = plane
         
@@ -88,6 +91,27 @@ open class LocationAnnotationNode: LocationNode {
         
         addChildNode(annotationNode)
     }
+    // FUTURE if we want to be able to use images instead of just text
+//    public init(location: CLLocation?, image: UIImage) {
+//        self.image = image
+//        // Scaling image relative to distance so it is not a fixed size
+//        scaleRelativeToDistance = true
+//
+//        let plane = SCNPlane(width: image.size.width / 100, height: image.size.height / 100)
+//        plane.firstMaterial!.diffuse.contents = image
+//        plane.firstMaterial!.lightingModel = .constant
+//
+//        annotationNode = SCNNode()
+//        annotationNode.geometry = plane
+//
+//        super.init(location: location)
+//
+//        let billboardConstraint = SCNBillboardConstraint()
+//        billboardConstraint.freeAxes = SCNBillboardAxis.Y
+//        constraints = [billboardConstraint]
+//
+//        addChildNode(annotationNode)
+//    }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

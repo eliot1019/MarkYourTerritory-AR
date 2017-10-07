@@ -46,8 +46,10 @@ class ViewController: UIViewController {
             if touch.view != nil {
                 let location = touch.location(in: self.view)
                 
-                let image = UIImage(named: "pin")!
-                let annotationNode = LocationAnnotationNode(location: nil, image: image)
+                let textField = UITextField.text(keyBoardShit)
+                
+                //let annotationNode = LocationAnnotationNode(location: nil, image: image)
+                let annotationNode = LocationAnnotationNode(location: nil, String: textField)
                 annotationNode.scaleRelativeToDistance = true
                 sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
                 
