@@ -65,7 +65,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
         
         if let touch = touches.first {
             if touch.view != nil {
-<<<<<<< HEAD
                 if !self.isBlur {
                     let blur = UIBlurEffect(style: .dark)
                     blurView = UIVisualEffectView(effect: blur)
@@ -95,8 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
 //                let annotationNode = LocationAnnotationNode(location: nil, String: textField)
 //                annotationNode.scaleRelativeToDistance = true
 //                sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
-=======
-<<<<<<< HEAD
+                
                 let location = touch.location(in: self.view)
                 
                 //let theText = UITextField.text(keyBoardShit)
@@ -106,16 +104,10 @@ class ViewController: UIViewController, UITextFieldDelegate{
                 // let annotationNode = LocationAnnotationNode(location: nil, String: theText)
                 // annotationNode.scaleRelativeToDistance = true
                 // sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
-=======
- 
->>>>>>> 1895e42815f6d08c4df275d561030cb0159e4345
->>>>>>> 3375301ee61129da278a66345527b96365738412
-                
             }
         }
     }
     
-<<<<<<< HEAD
     func textFieldDidEndEditing(_ textField: UITextField) {
         blurView.removeFromSuperview()
         self.isBlur = false
@@ -136,14 +128,12 @@ class ViewController: UIViewController, UITextFieldDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
-=======
     @objc func getUserLocation() {
         if let currentLocation = sceneLocationView.currentLocation() {
             DispatchQueue.main.async {
                 //print(currentLocation)
             }
         }
->>>>>>> 3375301ee61129da278a66345527b96365738412
     }
     
 
