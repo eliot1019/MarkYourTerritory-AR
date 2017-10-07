@@ -14,7 +14,7 @@ import CoreLocation
 class ViewController: UIViewController {
     var sceneLocationView = SceneLocationView()
     var geoQueryTimer: Timer!
-    var testPin = Pin(id: Date().tost, lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
+    var testPin = Pin(id: Utilities.getDateString(isoFormat: true), lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -22,6 +22,22 @@ struct Utilities {
         return rect.height
         
     }
+    
+    //Returns an ISO date string of today's date
+    static func getDateString(isoFormat:Bool?=nil) -> String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss"
+        if let isIso = isoFormat {
+            if isIso {
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            }
+        }
+        let dateString = dateFormatter.string(from: date as Date)
+        return dateString
+    }
+    
 }
 
 
