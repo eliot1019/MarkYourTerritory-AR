@@ -554,7 +554,7 @@
 				DEVELOPMENT_TEAM = XAM3QU453E;
 				INFOPLIST_FILE = "MarkYourTerritory-AR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR";
+				PRODUCT_BUNDLE_IDENTIFIER = "Levi-Walsh-AR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/BridgingHeader.h";
@@ -573,7 +573,7 @@
 				DEVELOPMENT_TEAM = XAM3QU453E;
 				INFOPLIST_FILE = "MarkYourTerritory-AR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR";
+				PRODUCT_BUNDLE_IDENTIFIER = "Levi-Walsh-AR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/BridgingHeader.h";
