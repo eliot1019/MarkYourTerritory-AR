@@ -13,16 +13,32 @@ import CoreLocation
 
 class ViewController: UIViewController, UITextFieldDelegate{
     var sceneLocationView = SceneLocationView()
+<<<<<<< HEAD
     var isBlur = false
     var textIsShown = false
     var textField = UITextField()
     var blurView = UIVisualEffectView()
+=======
+    var geoQueryTimer: Timer!
+    var testPin = Pin(id: "testid", lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
+>>>>>>> 3375301ee61129da278a66345527b96365738412
     
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneLocationView.run()
         self.textField.delegate = self
         view.addSubview(sceneLocationView)
+        
+        //Creating the postPin
+        NetworkClient.shared.postPin(pin: testPin, completion: { pinId in
+            guard let pinId = pinId else {
+                print("Error creating pin in Firebase")
+                return
+            }
+            print("Created pinId \(pinId)")
+            
+        })
+        geoQueryTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.getUserLocation), userInfo: nil, repeats: true)
         
     }
     
@@ -49,6 +65,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         
         if let touch = touches.first {
             if touch.view != nil {
+<<<<<<< HEAD
                 if !self.isBlur {
                     let blur = UIBlurEffect(style: .dark)
                     blurView = UIVisualEffectView(effect: blur)
@@ -78,11 +95,27 @@ class ViewController: UIViewController, UITextFieldDelegate{
 //                let annotationNode = LocationAnnotationNode(location: nil, String: textField)
 //                annotationNode.scaleRelativeToDistance = true
 //                sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
+=======
+<<<<<<< HEAD
+                let location = touch.location(in: self.view)
+                
+                //let theText = UITextField.text(keyBoardShit)
+                
+                //let annotationNode = LocationAnnotationNode(location: nil, image: image)
+                // TODO populate theText (uncomment below 3 lines)
+                // let annotationNode = LocationAnnotationNode(location: nil, String: theText)
+                // annotationNode.scaleRelativeToDistance = true
+                // sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
+=======
+ 
+>>>>>>> 1895e42815f6d08c4df275d561030cb0159e4345
+>>>>>>> 3375301ee61129da278a66345527b96365738412
                 
             }
         }
     }
     
+<<<<<<< HEAD
     func textFieldDidEndEditing(_ textField: UITextField) {
         blurView.removeFromSuperview()
         self.isBlur = false
@@ -103,6 +136,15 @@ class ViewController: UIViewController, UITextFieldDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
+=======
+    @objc func getUserLocation() {
+        if let currentLocation = sceneLocationView.currentLocation() {
+            DispatchQueue.main.async {
+                //print(currentLocation)
+            }
+        }
+>>>>>>> 3375301ee61129da278a66345527b96365738412
     }
+    
 
 }
