@@ -70,6 +70,8 @@ open class LocationAnnotationNode: LocationNode {
     
     public init(location: CLLocation?, image: UIImage) {
         self.image = image
+        // Scaling image relative to distance so it is not a fixed size
+        scaleRelativeToDistance = true
         
         let plane = SCNPlane(width: image.size.width / 100, height: image.size.height / 100)
         plane.firstMaterial!.diffuse.contents = image
