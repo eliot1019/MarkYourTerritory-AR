@@ -19,7 +19,6 @@ class ViewController: UIViewController {
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +37,22 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         sceneLocationView.frame = view.bounds
 
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        if let touch = touches.first {
+            if touch.view != nil {
+                let location = touch.location(in: self.view)
+                
+                let image = UIImage(named: "pin")!
+                let annotationNode = LocationAnnotationNode(location: nil, image: image)
+                annotationNode.scaleRelativeToDistance = true
+                sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
+                
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
