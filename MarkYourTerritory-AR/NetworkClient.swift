@@ -48,5 +48,19 @@ class NetworkClient: NSObject {
         
     }
     
+    func setGeoFireLocation(pin: Pin, firebaseID: String, completion: @escaping (Error?) -> Void) {
+        
+        geoFire.setLocation(CLLocation(latitude: 37.86727740, longitude: -122.25776656), forKey: firebaseID) { (error) in
+            if (error != nil) {
+                println("An error occured: \(error)")
+                completion(error)
+            } else {
+                println("Saved location successfully!")
+                completion(nil)
+            }
+        }
+
+    }
+    
     
 }

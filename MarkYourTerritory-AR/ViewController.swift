@@ -28,7 +28,11 @@ class ViewController: UIViewController {
                 return
             }
             print("Created pinId \(pinId)")
-            
+            NetworkClient.shared.setGeoFireLocation(pin: testPin, firebaseID: pinId, completion: { error in
+                guard let error = error else {
+                    return
+                }
+            })
         })
         geoQueryTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.getUserLocation), userInfo: nil, repeats: true)
         
