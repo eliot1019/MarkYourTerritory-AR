@@ -20,7 +20,8 @@ class NetworkClient: NSObject {
     var ref: DatabaseReference!
     var geoFire: GeoFire!
     var circleQuery: GFCircleQuery?
-
+    var pins = Set<Pin>()
+    
     override init() {
         super.init()
         
@@ -50,6 +51,22 @@ class NetworkClient: NSObject {
         
     }
     
+    func getPin(firebaseKey: String, completion: @escaping (Pin?) -> Void) {
+        let pinsRef = self.ref.child("pins")
+        pinsRef.child(firebaseKey).observeSingleEvent(of: .value, with: { snapshot in
+            guard let dict = snapshot.value as? NSDictionary else {
+                print("No pin for key \(firebaseKey)")
+                completion(nil)
+                return
+            }
+            //print(dict)
+            var pin = Pin(dict: dict as! [String : AnyObject])
+            pin.firebaseKey = firebaseKey
+            completion(pin)
+            
+        })
+    }
+    
     func setGeoFireLocation(pin: Pin, firebaseID: String, completion: @escaping (Error?) -> Void) {
         
         geoFire.setLocation(CLLocation(latitude: pin.lat, longitude: pin.lon), forKey: firebaseID) { (error) in
@@ -75,12 +92,17 @@ class NetworkClient: NSObject {
             self.circleQuery = geoFire.query(at: center, withRadius: 0.5)
             self.circleQuery!.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
                 print("Key '\(key)' entered the search area and is at location '\(location)'")
+                self.getPin(firebaseKey: key, completion: { pin in
+                    guard let pin = pin else { return }
+                    print("Inserting pin \(pin.firebaseKey) into set")
+                    self.pins.insert(pin)
+                    
+                })
             })
         }
         
         //The center of the search area. Update this value to update the query. Events are triggered for any keys that move in or out of the search area.
         self.circleQuery!.center = center
-      
         
     }
     

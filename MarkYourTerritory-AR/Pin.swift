@@ -13,31 +13,49 @@ enum PinType : String, Codable {
     case text
 }
 
-struct Pin: Codable {
-    var id: String
-    var lat: Double
-    var lon: Double
-    var type: PinType
-    var user: String
+struct Pin: Codable, Hashable {
+    // Currently is the ISO Date as a string. Not unique
+    var id: String = ""
+    var lat: Double = 0.0
+    var lon: Double = 0.0
+    var type: PinType = .text
+    var user: String = "Anon"
+    var firebaseKey: String = ""
     
-//    init(dict: [String: AnyObject]) {
-//        if let id = dict["id"] as? String {
-//            self.id = id
-//        }
-//        if let lat = dict["lat"] as? Double {
-//            self.lat = lat
-//        }
-//        if let long = dict["lon"] as? Double {
-//            self.lon = lon
-//        }
-//        if let type = dict["type"] as? String {
-//            self.type = type
-//        }
-//        if let user = dict["user"] as? String {
-//            self.user = user
-//        }
-//    }
+    var hashValue: Int {
+        return firebaseKey.hashValue
+    }
     
+    static func == (lhs: Pin, rhs: Pin) -> Bool {
+        return lhs.firebaseKey == rhs.firebaseKey
+    }
+    
+    init(dict: [String: AnyObject]) {
+        if let id = dict["id"] as? String {
+            self.id = id
+        }
+        if let lat = dict["lat"] as? Double {
+            self.lat = lat
+        }
+        if let lon = dict["lon"] as? Double {
+            self.lon = lon
+        }
+        if let type = dict["type"] as? String {
+            self.type = PinType(rawValue: type) ?? .text
+        }
+        if let user = dict["user"] as? String {
+            self.user = user
+        }
+    }
+    
+    init(id: String, lat: Double, lon: Double, type: PinType, user:String) {
+        self.id = id
+        self.lat = lat
+        self.lon = lon
+        self.type = type
+        self.user = user
+        firebaseKey = ""
+    }
     
 }
 
