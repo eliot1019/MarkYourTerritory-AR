@@ -25,8 +25,7 @@
 		15CFA8F01F88D2EE007CE6B1 /* SCNNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8DC1F88CE5C007CE6B1 /* SCNNode+Extensions.swift */; };
 		15CFA8F11F88D2EE007CE6B1 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8DD1F88CE5C007CE6B1 /* SCNVector3+Extensions.swift */; };
 		274F0944D76F76FB5EF3F7A8 /* libPods-MarkYourTerritory-AR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1321D240E17144E5FDBC594 /* libPods-MarkYourTerritory-AR.a */; };
-		B6B961B01F88DD3E0097B80F /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = B6B961AF1F88DD3E0097B80F /* GoogleService-Info (1).plist */; };
-		B6B961B11F88DD3E0097B80F /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = B6B961AF1F88DD3E0097B80F /* GoogleService-Info (1).plist */; };
+		8B4CC2921F896ED700EDB7FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B4CC2911F896ED700EDB7FB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +61,8 @@
 		15CFA8DC1F88CE5C007CE6B1 /* SCNNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode+Extensions.swift"; sourceTree = "<group>"; };
 		15CFA8DD1F88CE5C007CE6B1 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 		5282F3D6A81E75A5CB57FDFD /* Pods-MarkYourTerritory-AR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkYourTerritory-AR.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarkYourTerritory-AR/Pods-MarkYourTerritory-AR.release.xcconfig"; sourceTree = "<group>"; };
+		8B4CC2911F896ED700EDB7FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A1321D240E17144E5FDBC594 /* libPods-MarkYourTerritory-AR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MarkYourTerritory-AR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6B961AF1F88DD3E0097B80F /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info (1).plist"; path = "../../../../Downloads/GoogleService-Info (1).plist"; sourceTree = "<group>"; };
 		DD40F55511C4EA71C8882234 /* Pods-MarkYourTerritory-AR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkYourTerritory-AR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarkYourTerritory-AR/Pods-MarkYourTerritory-AR.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +116,7 @@
 		15CFA8B01F88CE0A007CE6B1 /* MarkYourTerritory-AR */ = {
 			isa = PBXGroup;
 			children = (
+				8B4CC2911F896ED700EDB7FB /* GoogleService-Info.plist */,
 				15CFA8B11F88CE0A007CE6B1 /* AppDelegate.swift */,
 				15CFA8D31F88CE5C007CE6B1 /* Source */,
 				15CFA8B31F88CE0A007CE6B1 /* art.scnassets */,
@@ -125,7 +125,6 @@
 				15CFA8BA1F88CE0A007CE6B1 /* Assets.xcassets */,
 				15CFA8BC1F88CE0A007CE6B1 /* LaunchScreen.storyboard */,
 				15CFA8BF1F88CE0A007CE6B1 /* Info.plist */,
-				B6B961AF1F88DD3E0097B80F /* GoogleService-Info (1).plist */,
 			);
 			path = "MarkYourTerritory-AR";
 			sourceTree = "<group>";
@@ -253,7 +252,7 @@
 			files = (
 				15CFA8B41F88CE0A007CE6B1 /* art.scnassets in Resources */,
 				15CFA8BE1F88CE0A007CE6B1 /* LaunchScreen.storyboard in Resources */,
-				B6B961B01F88DD3E0097B80F /* GoogleService-Info (1).plist in Resources */,
+				8B4CC2921F896ED700EDB7FB /* GoogleService-Info.plist in Resources */,
 				15CFA8BB1F88CE0A007CE6B1 /* Assets.xcassets in Resources */,
 				15CFA8B91F88CE0A007CE6B1 /* Main.storyboard in Resources */,
 			);
@@ -263,7 +262,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6B961B11F88DD3E0097B80F /* GoogleService-Info (1).plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
