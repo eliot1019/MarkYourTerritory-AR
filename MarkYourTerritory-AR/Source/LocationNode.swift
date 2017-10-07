@@ -57,7 +57,7 @@ open class LocationAnnotationNode: LocationNode {
     ///e.g. if the size is 100x100px, the annotation will take up approx 100x100 points on screen.
     // public let image: UIImage
     
-    public let label: UILabel
+    public let theText: String
     
     ///Subnodes and adjustments should be applied to this subnode
     ///Required to allow scaling at the same time as having a 2D 'billboard' appearance
@@ -70,14 +70,14 @@ open class LocationAnnotationNode: LocationNode {
     ///For landmarks in the distance, the default is correct
     public var scaleRelativeToDistance = false
     
-    public init(location: CLLocation?, label: UILabel) {
-        self.label = label
+    public init(location: CLLocation?, theText: String) {
+        self.theText = theText
         // Scaling image relative to distance so it is not a fixed size
         scaleRelativeToDistance = true
         
         // TODO make this not just hardcoded you fool
         let plane = SCNPlane(width: 100, height: 100)
-        plane.firstMaterial!.diffuse.contents = label
+        //plane.firstMaterial!.diffuse.contents = label
         plane.firstMaterial!.lightingModel = .constant
 
         annotationNode = SCNNode()
