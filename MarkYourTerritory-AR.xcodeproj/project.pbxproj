@@ -24,11 +24,12 @@
 		15CFA8EF1F88D2EE007CE6B1 /* SceneLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8DB1F88CE5C007CE6B1 /* SceneLocationView.swift */; };
 		15CFA8F01F88D2EE007CE6B1 /* SCNNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8DC1F88CE5C007CE6B1 /* SCNNode+Extensions.swift */; };
 		15CFA8F11F88D2EE007CE6B1 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8DD1F88CE5C007CE6B1 /* SCNVector3+Extensions.swift */; };
-		274F0944D76F76FB5EF3F7A8 /* libPods-MarkYourTerritory-AR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1321D240E17144E5FDBC594 /* libPods-MarkYourTerritory-AR.a */; };
-		8B4CC2921F896ED700EDB7FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B4CC2911F896ED700EDB7FB /* GoogleService-Info.plist */; };
 		15CFA8F31F88DDCA007CE6B1 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8F21F88DDCA007CE6B1 /* Utilities.swift */; };
 		15CFA8F51F88DDD8007CE6B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8F41F88DDD8007CE6B1 /* Constants.swift */; };
+		15CFA90A1F897762007CE6B1 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA9091F897762007CE6B1 /* Pin.swift */; };
+		15CFA90C1F897839007CE6B1 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA90B1F897839007CE6B1 /* NetworkClient.swift */; };
 		48A9C965A260E9FB6BD6D9FD /* libPods-MarkYourTerritory-AR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D84AA26450FC35A60FB4EB3 /* libPods-MarkYourTerritory-AR.a */; };
+		8B4CC2921F896ED700EDB7FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B4CC2911F896ED700EDB7FB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +64,6 @@
 		15CFA8DB1F88CE5C007CE6B1 /* SceneLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLocationView.swift; sourceTree = "<group>"; };
 		15CFA8DC1F88CE5C007CE6B1 /* SCNNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode+Extensions.swift"; sourceTree = "<group>"; };
 		15CFA8DD1F88CE5C007CE6B1 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
-		5282F3D6A81E75A5CB57FDFD /* Pods-MarkYourTerritory-AR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkYourTerritory-AR.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarkYourTerritory-AR/Pods-MarkYourTerritory-AR.release.xcconfig"; sourceTree = "<group>"; };
-		8B4CC2911F896ED700EDB7FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		A1321D240E17144E5FDBC594 /* libPods-MarkYourTerritory-AR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MarkYourTerritory-AR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD40F55511C4EA71C8882234 /* Pods-MarkYourTerritory-AR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkYourTerritory-AR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarkYourTerritory-AR/Pods-MarkYourTerritory-AR.debug.xcconfig"; sourceTree = "<group>"; };
 		15CFA8F21F88DDCA007CE6B1 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		15CFA8F41F88DDD8007CE6B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		15CFA8F81F896DBF007CE6B1 /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
@@ -85,6 +82,9 @@
 		15CFA9061F896DBF007CE6B1 /* GFQuery+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
 		15CFA9071F896DBF007CE6B1 /* GFQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		15CFA9081F896DE6007CE6B1 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		15CFA9091F897762007CE6B1 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		15CFA90B1F897839007CE6B1 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		8B4CC2911F896ED700EDB7FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8D84AA26450FC35A60FB4EB3 /* libPods-MarkYourTerritory-AR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MarkYourTerritory-AR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50EBDE2577F3AF85D750825 /* Pods-MarkYourTerritory-AR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkYourTerritory-AR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarkYourTerritory-AR/Pods-MarkYourTerritory-AR.debug.xcconfig"; sourceTree = "<group>"; };
 		F19B9AD4D601EBA476500084 /* Pods-MarkYourTerritory-AR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkYourTerritory-AR.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarkYourTerritory-AR/Pods-MarkYourTerritory-AR.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +146,8 @@
 				15CFA8D31F88CE5C007CE6B1 /* Source */,
 				15CFA8B31F88CE0A007CE6B1 /* art.scnassets */,
 				15CFA8B51F88CE0A007CE6B1 /* ViewController.swift */,
+				15CFA90B1F897839007CE6B1 /* NetworkClient.swift */,
+				15CFA9091F897762007CE6B1 /* Pin.swift */,
 				15CFA8F21F88DDCA007CE6B1 /* Utilities.swift */,
 				15CFA8F41F88DDD8007CE6B1 /* Constants.swift */,
 				15CFA8B71F88CE0A007CE6B1 /* Main.storyboard */,
@@ -386,12 +388,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15CFA90A1F897762007CE6B1 /* Pin.swift in Sources */,
 				15CFA8EF1F88D2EE007CE6B1 /* SceneLocationView.swift in Sources */,
 				15CFA8B61F88CE0A007CE6B1 /* ViewController.swift in Sources */,
 				15CFA8EA1F88D2EE007CE6B1 /* FloatingPoint+Radians.swift in Sources */,
 				15CFA8F01F88D2EE007CE6B1 /* SCNNode+Extensions.swift in Sources */,
 				15CFA8F31F88DDCA007CE6B1 /* Utilities.swift in Sources */,
 				15CFA8EB1F88D2EE007CE6B1 /* LocationManager.swift in Sources */,
+				15CFA90C1F897839007CE6B1 /* NetworkClient.swift in Sources */,
 				15CFA8EC1F88D2EE007CE6B1 /* LocationNode.swift in Sources */,
 				15CFA8E91F88D2EE007CE6B1 /* CLLocation+Extensions.swift in Sources */,
 				15CFA8F11F88D2EE007CE6B1 /* SCNVector3+Extensions.swift in Sources */,

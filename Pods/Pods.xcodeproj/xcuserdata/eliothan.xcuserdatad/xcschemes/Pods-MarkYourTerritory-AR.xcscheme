@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6F64573A0102663A9D1493691F626A20'
+               BlueprintIdentifier = '6ED800156832596AEABFAB70A8C283F4'
                BlueprintName = 'Pods-MarkYourTerritory-AR'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-MarkYourTerritory-AR.a'>

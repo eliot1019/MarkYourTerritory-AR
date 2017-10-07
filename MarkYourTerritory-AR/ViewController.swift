@@ -13,12 +13,16 @@ import CoreLocation
 
 class ViewController: UIViewController {
     var sceneLocationView = SceneLocationView()
+    var geoQueryTimer: Timer!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
         
+        
+        //geoQueryTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: <#T##(Timer) -> Void#>)
     }
     
     override func viewWillAppear(_ animated: Bool) {
