@@ -24,6 +24,8 @@
 		15CFA8EF1F88D2EE007CE6B1 /* SceneLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8DB1F88CE5C007CE6B1 /* SceneLocationView.swift */; };
 		15CFA8F01F88D2EE007CE6B1 /* SCNNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8DC1F88CE5C007CE6B1 /* SCNNode+Extensions.swift */; };
 		15CFA8F11F88D2EE007CE6B1 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8DD1F88CE5C007CE6B1 /* SCNVector3+Extensions.swift */; };
+		15CFA8F31F88DDCA007CE6B1 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8F21F88DDCA007CE6B1 /* Utilities.swift */; };
+		15CFA8F51F88DDD8007CE6B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8F41F88DDD8007CE6B1 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		15CFA8DB1F88CE5C007CE6B1 /* SceneLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLocationView.swift; sourceTree = "<group>"; };
 		15CFA8DC1F88CE5C007CE6B1 /* SCNNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode+Extensions.swift"; sourceTree = "<group>"; };
 		15CFA8DD1F88CE5C007CE6B1 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
+		15CFA8F21F88DDCA007CE6B1 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		15CFA8F41F88DDD8007CE6B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				15CFA8D31F88CE5C007CE6B1 /* Source */,
 				15CFA8B31F88CE0A007CE6B1 /* art.scnassets */,
 				15CFA8B51F88CE0A007CE6B1 /* ViewController.swift */,
+				15CFA8F21F88DDCA007CE6B1 /* Utilities.swift */,
+				15CFA8F41F88DDD8007CE6B1 /* Constants.swift */,
 				15CFA8B71F88CE0A007CE6B1 /* Main.storyboard */,
 				15CFA8BA1F88CE0A007CE6B1 /* Assets.xcassets */,
 				15CFA8BC1F88CE0A007CE6B1 /* LaunchScreen.storyboard */,
@@ -245,12 +251,14 @@
 				15CFA8B61F88CE0A007CE6B1 /* ViewController.swift in Sources */,
 				15CFA8EA1F88D2EE007CE6B1 /* FloatingPoint+Radians.swift in Sources */,
 				15CFA8F01F88D2EE007CE6B1 /* SCNNode+Extensions.swift in Sources */,
+				15CFA8F31F88DDCA007CE6B1 /* Utilities.swift in Sources */,
 				15CFA8EB1F88D2EE007CE6B1 /* LocationManager.swift in Sources */,
 				15CFA8EC1F88D2EE007CE6B1 /* LocationNode.swift in Sources */,
 				15CFA8E91F88D2EE007CE6B1 /* CLLocation+Extensions.swift in Sources */,
 				15CFA8F11F88D2EE007CE6B1 /* SCNVector3+Extensions.swift in Sources */,
 				15CFA8E81F88D2EE007CE6B1 /* CGPoint+Extensions.swift in Sources */,
 				15CFA8EE1F88D2EE007CE6B1 /* SceneLocationEstimate.swift in Sources */,
+				15CFA8F51F88DDD8007CE6B1 /* Constants.swift in Sources */,
 				15CFA8B21F88CE0A007CE6B1 /* AppDelegate.swift in Sources */,
 				15CFA8ED1F88D2EE007CE6B1 /* SceneLocationEstimate+Extensions.swift in Sources */,
 			);
