@@ -18,12 +18,14 @@ class NetworkClient: NSObject {
     static let shared = NetworkClient()
     
     var ref: DatabaseReference!
+    var geoFire: GeoFire!
+    var circleQuery: GFCircleQuery?
 
     override init() {
         super.init()
         
         ref = Database.database().reference()
-        
+        geoFire = GeoFire(firebaseRef: ref)
     }
     
     ///Completion passes back a string of the newly created pin id
@@ -50,17 +52,36 @@ class NetworkClient: NSObject {
     
     func setGeoFireLocation(pin: Pin, firebaseID: String, completion: @escaping (Error?) -> Void) {
         
-        geoFire.setLocation(CLLocation(latitude: 37.86727740, longitude: -122.25776656), forKey: firebaseID) { (error) in
+        geoFire.setLocation(CLLocation(latitude: pin.lat, longitude: pin.lon), forKey: firebaseID) { (error) in
             if (error != nil) {
-                println("An error occured: \(error)")
+                print("An error occured: \(String(describing: error))")
                 completion(error)
             } else {
-                println("Saved location successfully!")
+                print("Saved location successfully!")
                 completion(nil)
             }
         }
 
     }
     
+    /// Observes pins created in a 500m radius around a center
+    ///If its the first time you call this, it creates circlequery and starts observing. Otherwise, it just updates the center
+    func updateGeoQuery(lat: Double, lon: Double) {
+        let center = CLLocation(latitude: lat, longitude: lon)
+
+        //If first call, we init circleQuery
+        if self.circleQuery == nil {
+            // Query locations at coord with a radius of 500 meters
+            self.circleQuery = geoFire.query(at: center, withRadius: 0.5)
+            self.circleQuery!.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
+                print("Key '\(key)' entered the search area and is at location '\(location)'")
+            })
+        }
+        
+        //The center of the search area. Update this value to update the query. Events are triggered for any keys that move in or out of the search area.
+        self.circleQuery!.center = center
+      
+        
+    }
     
 }

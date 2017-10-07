@@ -14,7 +14,7 @@ import CoreLocation
 class ViewController: UIViewController {
     var sceneLocationView = SceneLocationView()
     var geoQueryTimer: Timer!
-    var testPin = Pin(id: "testid", lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
+    var testPin = Pin(id: Date().tost, lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
                 return
             }
             print("Created pinId \(pinId)")
-            NetworkClient.shared.setGeoFireLocation(pin: testPin, firebaseID: pinId, completion: { error in
+            NetworkClient.shared.setGeoFireLocation(pin: self.testPin, firebaseID: pinId, completion: { error in
                 guard let error = error else {
                     return
                 }
@@ -61,7 +61,8 @@ class ViewController: UIViewController {
         
         if let touch = touches.first {
             if touch.view != nil {
- 
+                //Test Geofire shit
+                NetworkClient.shared.updateGeoQuery(lat: testPin.lat, lon: testPin.lon)
                 
             }
         }
