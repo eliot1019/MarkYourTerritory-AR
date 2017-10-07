@@ -38,6 +38,16 @@
 		15CFA8C41F88CE0A007CE6B1 /* MarkYourTerritory-ARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MarkYourTerritory-ARTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15CFA8C81F88CE0A007CE6B1 /* MarkYourTerritory_ARTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkYourTerritory_ARTests.swift; sourceTree = "<group>"; };
 		15CFA8CA1F88CE0A007CE6B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15CFA8D41F88CE5C007CE6B1 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		15CFA8D51F88CE5C007CE6B1 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
+		15CFA8D61F88CE5C007CE6B1 /* FloatingPoint+Radians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingPoint+Radians.swift"; sourceTree = "<group>"; };
+		15CFA8D71F88CE5C007CE6B1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		15CFA8D81F88CE5C007CE6B1 /* LocationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNode.swift; sourceTree = "<group>"; };
+		15CFA8D91F88CE5C007CE6B1 /* SceneLocationEstimate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneLocationEstimate+Extensions.swift"; sourceTree = "<group>"; };
+		15CFA8DA1F88CE5C007CE6B1 /* SceneLocationEstimate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLocationEstimate.swift; sourceTree = "<group>"; };
+		15CFA8DB1F88CE5C007CE6B1 /* SceneLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLocationView.swift; sourceTree = "<group>"; };
+		15CFA8DC1F88CE5C007CE6B1 /* SCNNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode+Extensions.swift"; sourceTree = "<group>"; };
+		15CFA8DD1F88CE5C007CE6B1 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				15CFA8B11F88CE0A007CE6B1 /* AppDelegate.swift */,
+				15CFA8D31F88CE5C007CE6B1 /* Source */,
 				15CFA8B31F88CE0A007CE6B1 /* art.scnassets */,
 				15CFA8B51F88CE0A007CE6B1 /* ViewController.swift */,
 				15CFA8B71F88CE0A007CE6B1 /* Main.storyboard */,
@@ -97,6 +108,23 @@
 				15CFA8CA1F88CE0A007CE6B1 /* Info.plist */,
 			);
 			path = "MarkYourTerritory-ARTests";
+			sourceTree = "<group>";
+		};
+		15CFA8D31F88CE5C007CE6B1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				15CFA8D41F88CE5C007CE6B1 /* CGPoint+Extensions.swift */,
+				15CFA8D51F88CE5C007CE6B1 /* CLLocation+Extensions.swift */,
+				15CFA8D61F88CE5C007CE6B1 /* FloatingPoint+Radians.swift */,
+				15CFA8D71F88CE5C007CE6B1 /* LocationManager.swift */,
+				15CFA8D81F88CE5C007CE6B1 /* LocationNode.swift */,
+				15CFA8D91F88CE5C007CE6B1 /* SceneLocationEstimate+Extensions.swift */,
+				15CFA8DA1F88CE5C007CE6B1 /* SceneLocationEstimate.swift */,
+				15CFA8DB1F88CE5C007CE6B1 /* SceneLocationView.swift */,
+				15CFA8DC1F88CE5C007CE6B1 /* SCNNode+Extensions.swift */,
+				15CFA8DD1F88CE5C007CE6B1 /* SCNVector3+Extensions.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6EDCXEAQ9P;
 				INFOPLIST_FILE = "MarkYourTerritory-AR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR";
@@ -372,6 +401,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6EDCXEAQ9P;
 				INFOPLIST_FILE = "MarkYourTerritory-AR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR";
