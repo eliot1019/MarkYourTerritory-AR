@@ -63,12 +63,10 @@
 		15CFA8DB1F88CE5C007CE6B1 /* SceneLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLocationView.swift; sourceTree = "<group>"; };
 		15CFA8DC1F88CE5C007CE6B1 /* SCNNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNNode+Extensions.swift"; sourceTree = "<group>"; };
 		15CFA8DD1F88CE5C007CE6B1 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		5282F3D6A81E75A5CB57FDFD /* Pods-MarkYourTerritory-AR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkYourTerritory-AR.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarkYourTerritory-AR/Pods-MarkYourTerritory-AR.release.xcconfig"; sourceTree = "<group>"; };
 		8B4CC2911F896ED700EDB7FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A1321D240E17144E5FDBC594 /* libPods-MarkYourTerritory-AR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MarkYourTerritory-AR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD40F55511C4EA71C8882234 /* Pods-MarkYourTerritory-AR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkYourTerritory-AR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarkYourTerritory-AR/Pods-MarkYourTerritory-AR.debug.xcconfig"; sourceTree = "<group>"; };
-=======
 		15CFA8F21F88DDCA007CE6B1 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		15CFA8F41F88DDD8007CE6B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		15CFA8F81F896DBF007CE6B1 /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
