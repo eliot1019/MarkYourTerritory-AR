@@ -562,7 +562,7 @@
 				DEVELOPMENT_TEAM = 6EDCXEAQ9P;
 				INFOPLIST_FILE = "MarkYourTerritory-AR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR";
+				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/BridgingHeader.h";
@@ -581,7 +581,7 @@
 				DEVELOPMENT_TEAM = 6EDCXEAQ9P;
 				INFOPLIST_FILE = "MarkYourTerritory-AR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR";
+				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/BridgingHeader.h";
