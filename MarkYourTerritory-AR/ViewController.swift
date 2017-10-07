@@ -21,8 +21,9 @@ class ViewController: UIViewController {
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
         
-        
         //geoQueryTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: <#T##(Timer) -> Void#>)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
