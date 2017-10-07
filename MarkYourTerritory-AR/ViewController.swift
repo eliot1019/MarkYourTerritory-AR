@@ -14,15 +14,23 @@ import CoreLocation
 class ViewController: UIViewController {
     var sceneLocationView = SceneLocationView()
     var geoQueryTimer: Timer!
-    
+    var testPin = Pin(id: "testid", lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
         
-        //geoQueryTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: <#T##(Timer) -> Void#>)
-        
+        //Creating the postPin
+        NetworkClient.shared.postPin(pin: testPin, completion: { pinId in
+            guard let pinId = pinId else {
+                print("Error creating pin in Firebase")
+                return
+            }
+            print("Created pinId \(pinId)")
+            
+        })
+        geoQueryTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.getUserLocation), userInfo: nil, repeats: true)
         
     }
     
@@ -49,20 +57,19 @@ class ViewController: UIViewController {
         
         if let touch = touches.first {
             if touch.view != nil {
-                let location = touch.location(in: self.view)
-                
-                let image = UIImage(named: "pin")!
-                let annotationNode = LocationAnnotationNode(location: nil, image: image)
-                annotationNode.scaleRelativeToDistance = true
-                sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
+ 
                 
             }
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
+    @objc func getUserLocation() {
+        if let currentLocation = sceneLocationView.currentLocation() {
+            DispatchQueue.main.async {
+                //print(currentLocation)
+            }
+        }
     }
+    
 
 }
