@@ -210,26 +210,17 @@ class ViewController: UIViewController {
                 }
                 
 
-                submitButton = UIButton(frame: CGRect(x: view.frame.width * 3/4 - 15, y: 10, width: 67, height: 29))
+                submitButton = UIButton(frame: CGRect(x: view.frame.width - 45, y: 10, width: 40, height: 40))
                 submitButton.layoutIfNeeded()
-                submitButton.setTitle("Post", for: .normal)
-                submitButton.setTitleColor(UIColor.purple, for: .normal)
-                submitButton.layer.cornerRadius = 5
+                submitButton.setImage(UIImage(named: "paint"), for: .normal)
                 submitButton.addTarget(self, action: #selector(submitButtonClicked(_:)), for: .touchUpInside)
-                submitButton.backgroundColor = UIColor.white
                 blurView?.addSubview(submitButton)
                 
-                threeDButton = UIButton(frame: CGRect(x: 10, y: 10, width: 67, height: 29))
+                threeDButton = UIButton(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
                 threeDButton.layoutIfNeeded()
-                threeDButton.setTitle("Enable 3D", for: .normal)
-                threeDButton.setTitleColor(UIColor.purple, for: .normal)
-                threeDButton.layer.cornerRadius = 5
+                threeDButton.setImage(UIImage(named: "3d"), for: .normal)
+                threeDButton.setImage(UIImage(named: "3d-selected"), for: .selected)
                 threeDButton.addTarget(self, action: #selector(threeDButtonClicked(_:)), for: .touchUpInside)
-                threeDButton.backgroundColor = UIColor.white
-                
-                threeDButton.setImage(UIImage(named: "Unchecked"), for: .normal)
-                threeDButton.setImage(UIImage(named: "Checked"), for: .selected)
-                
                 blurView?.addSubview(threeDButton)
                 
                 captionUnderline = UIView(frame: CGRect(x: 30, y: (view.frame.height / 2) + 30, width: view.frame.width - 60, height: 2))
