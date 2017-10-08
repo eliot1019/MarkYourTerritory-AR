@@ -95,11 +95,12 @@ class NetworkClient: NSObject {
                 print("Key '\(key)' entered the search area and is at location '\(location)'")
                 self.getPin(firebaseKey: key, completion: { pin in
                     guard let pin = pin else { return }
-                    print("Inserting pin \(pin.firebaseKey) into set")
                     let wasNotInSet = self.pins.insert(pin) //returns tuple --> read doc if confused
                     if wasNotInSet.inserted {
-                        //Create a AnnotationNode
+                        print("Inserting pin \(pin.firebaseKey) into set")
                         print("Creating annotation node")
+
+                        //Create a AnnotationNode
                         let pinCoord = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.lon)
                         
                         let pinLocation = CLLocation(coordinate: pinCoord, altitude: currentAlt)
