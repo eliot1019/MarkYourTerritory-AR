@@ -19,12 +19,28 @@ class ViewController: UIViewController{
     var userText:String = ""
     var blurView = UIVisualEffectView()
     var geoQueryTimer: Timer!
-    var testPin = Pin(id: "testid", lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
+    var testPin = Pin(id: Utilities.getDateString(isoFormat: true), lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
+
+        //Creating the postPin
+        NetworkClient.shared.postPin(pin: testPin, completion: { pinId in
+            guard let pinId = pinId else {
+                print("Error creating pin in Firebase")
+                return
+            }
+            print("Created pinId \(pinId)")
+            NetworkClient.shared.setGeoFireLocation(pin: self.testPin, firebaseID: pinId, completion: { error in
+                guard let error = error else {
+                    return
+                }
+            })
+        })
+        geoQueryTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.getUserLocation), userInfo: nil, repeats: true)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +74,10 @@ class ViewController: UIViewController{
                     self.view.addSubview(blurView)
                     self.isBlur = true
                 }
+
+                //Test Geofire shit
+                NetworkClient.shared.updateGeoQuery(lat: testPin.lat, lon: testPin.lon)
+
                 
                 if !textIsShown {
                     tField = UITextField(frame: CGRect(x: UIScreen.main.bounds.width * (1/3), y: UIScreen.main.bounds.height / 2, width: UIScreen.main.bounds.width - 20, height: 0.1 * UIScreen.main.bounds.height))

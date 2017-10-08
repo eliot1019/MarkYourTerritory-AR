@@ -28,6 +28,14 @@
 		15CFA8F51F88DDD8007CE6B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8F41F88DDD8007CE6B1 /* Constants.swift */; };
 		15CFA90A1F897762007CE6B1 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA9091F897762007CE6B1 /* Pin.swift */; };
 		15CFA90C1F897839007CE6B1 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA90B1F897839007CE6B1 /* NetworkClient.swift */; };
+		15CFA90D1F899411007CE6B1 /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA8FF1F896DBF007CE6B1 /* GeoFire.m */; };
+		15CFA90E1F899411007CE6B1 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA9011F896DBF007CE6B1 /* GFBase32Utils.m */; };
+		15CFA90F1F899411007CE6B1 /* GFGeoHash.h in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA9021F896DBF007CE6B1 /* GFGeoHash.h */; };
+		15CFA9101F899411007CE6B1 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA9031F896DBF007CE6B1 /* GFGeoHash.m */; };
+		15CFA9111F899411007CE6B1 /* GFGeoHashQuery.h in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA9041F896DBF007CE6B1 /* GFGeoHashQuery.h */; };
+		15CFA9121F899411007CE6B1 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA9051F896DBF007CE6B1 /* GFGeoHashQuery.m */; };
+		15CFA9131F899411007CE6B1 /* GFQuery+Private.h in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA9061F896DBF007CE6B1 /* GFQuery+Private.h */; };
+		15CFA9141F899411007CE6B1 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CFA9071F896DBF007CE6B1 /* GFQuery.m */; };
 		48A9C965A260E9FB6BD6D9FD /* libPods-MarkYourTerritory-AR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D84AA26450FC35A60FB4EB3 /* libPods-MarkYourTerritory-AR.a */; };
 		8B4CC2921F896ED700EDB7FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B4CC2911F896ED700EDB7FB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -378,7 +386,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -388,6 +396,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15CFA90D1F899411007CE6B1 /* GeoFire.m in Sources */,
+				15CFA90E1F899411007CE6B1 /* GFBase32Utils.m in Sources */,
+				15CFA90F1F899411007CE6B1 /* GFGeoHash.h in Sources */,
+				15CFA9101F899411007CE6B1 /* GFGeoHash.m in Sources */,
+				15CFA9111F899411007CE6B1 /* GFGeoHashQuery.h in Sources */,
+				15CFA9121F899411007CE6B1 /* GFGeoHashQuery.m in Sources */,
+				15CFA9131F899411007CE6B1 /* GFQuery+Private.h in Sources */,
+				15CFA9141F899411007CE6B1 /* GFQuery.m in Sources */,
 				15CFA90A1F897762007CE6B1 /* Pin.swift in Sources */,
 				15CFA8EF1F88D2EE007CE6B1 /* SceneLocationView.swift in Sources */,
 				15CFA8B61F88CE0A007CE6B1 /* ViewController.swift in Sources */,
@@ -559,10 +575,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7KA28NZ292;
+				DEVELOPMENT_TEAM = XAM3QU453E;
 				INFOPLIST_FILE = "MarkYourTerritory-AR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-ARR";
+				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/BridgingHeader.h";
@@ -578,10 +594,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7KA28NZ292;
+				DEVELOPMENT_TEAM = XAM3QU453E;
 				INFOPLIST_FILE = "MarkYourTerritory-AR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-ARR";
+				PRODUCT_BUNDLE_IDENTIFIER = "Eliot-Han.MarkYourTerritory-AR4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/BridgingHeader.h";
