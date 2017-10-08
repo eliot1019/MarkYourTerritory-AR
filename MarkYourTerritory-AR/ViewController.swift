@@ -12,7 +12,8 @@ import ARKit
 import CoreLocation
 import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ARSCNViewDelegate {
+    
     var sceneLocationView = SceneLocationView()
     var isBlur = false
     var textIsShown = false
@@ -37,6 +38,21 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sceneLocationView.delegate = self
+        
+        let text = SCNText(string: "Leave Your Mark!", extrusionDepth: 1)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor(red:0.12, green:0.85, blue:0.82, alpha:1.0)
+        text.materials = [material]
+        let node = SCNNode()
+        node.position = SCNVector3(x: 0.0, y: 0.02, z: -0.1)
+        node.scale = SCNVector3(x: 0.01, y: 0.01, z: 0.01)
+        node.geometry = text
+        sceneLocationView.scene.rootNode.addChildNode(node)
+        
+        sceneLocationView.autoenablesDefaultLighting = true
+        
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
 
