@@ -43,7 +43,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let text = SCNText(string: "Leave Your Mark!", extrusionDepth: 1)
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.green
+        material.diffuse.contents = UIColor(red:0.12, green:0.85, blue:0.82, alpha:1.0)
         text.materials = [material]
         let node = SCNNode()
         node.position = SCNVector3(x: 0.0, y: 0.02, z: -0.1)
