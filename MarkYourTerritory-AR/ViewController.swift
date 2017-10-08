@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var threeDButton = UIButton()
     var userText: String = ""
     var user: String = "Anonymous"
-    var blurView = UIVisualEffectView()
+    var blurView: UIView?
     var geoQueryTimer: Timer!
     //var testPin = Pin(id: Utilities.getDateString(isoFormat: true), lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
     
@@ -105,13 +105,11 @@ class ViewController: UIViewController {
     @objc func submitButtonClicked(_ sender: UIButton!) {
         postView.resignFirstResponder()
         self.view.endEditing(true)
-        blurView.removeFromSuperview()
         self.isBlur = false
-        postView.removeFromSuperview()
         self.textIsShown = false
         userText = postView.text!
-        captionUnderline.removeFromSuperview()
-        submitButton.removeFromSuperview()
+
+        dismissBlur()
         let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
         annotationNode.scaleRelativeToDistance = true
         sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
@@ -137,6 +135,19 @@ class ViewController: UIViewController {
                 })
             })
         }
+    }
+    
+    @objc func dismissBlur() {
+        if let b = blurView {
+            for sub in b.subviews {
+                sub.removeFromSuperview()
+            }
+            b.removeFromSuperview()
+        }
+        self.isBlur = false
+        self.textIsShown = false
+
+        
     }
     
     @objc func threeDButtonClicked(_ sender: UIButton!) {
@@ -167,11 +178,16 @@ class ViewController: UIViewController {
                 }
                 
                 if !self.isBlur {
-                    let blur = UIBlurEffect(style: .dark)
-                    blurView = UIVisualEffectView(effect: blur)
-                    blurView.frame = self.view.bounds
-                    blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                    self.view.addSubview(blurView)
+                    if let b = blurView {
+                        dismissBlur()
+                    }
+                    self.blurView = UIView()
+                    self.blurView?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+                    self.blurView?.frame = self.view.bounds
+                    self.blurView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(dismissBlur))
+                    self.blurView?.addGestureRecognizer(tap)
+                    self.view.addSubview(self.blurView!)
                     self.isBlur = true
                 }
 
@@ -190,7 +206,7 @@ class ViewController: UIViewController {
                     postView.isScrollEnabled = false
                     postView.font = UIFont.boldSystemFont(ofSize: 15)
                     postView.textContainer.maximumNumberOfLines = 4
-                    view.addSubview(postView)
+                    blurView?.addSubview(postView)
                     self.textIsShown = true
                 }
                 
@@ -202,7 +218,7 @@ class ViewController: UIViewController {
                 submitButton.layer.cornerRadius = 5
                 submitButton.addTarget(self, action: #selector(submitButtonClicked(_:)), for: .touchUpInside)
                 submitButton.backgroundColor = UIColor.white
-                view.addSubview(submitButton)
+                blurView?.addSubview(submitButton)
                 
                 threeDButton = UIButton(frame: CGRect(x: 10, y: 10, width: 67, height: 29))
                 threeDButton.layoutIfNeeded()
@@ -215,30 +231,12 @@ class ViewController: UIViewController {
                 threeDButton.setImage(UIImage(named: "Unchecked"), for: .normal)
                 threeDButton.setImage(UIImage(named: "Checked"), for: .selected)
                 
-                view.addSubview(threeDButton)
+                blurView?.addSubview(threeDButton)
                 
                 captionUnderline = UIView(frame: CGRect(x: 30, y: (view.frame.height / 2) + 30, width: view.frame.width - 60, height: 2))
                 captionUnderline.backgroundColor = UIColor.red
-                view.addSubview(captionUnderline)
+                blurView?.addSubview(captionUnderline)
                 
-                //To move the textfield up or down
-                func animateTextView(textView: UITextView, up: Bool){
-                    let movementDistance:CGFloat = (-150)
-                    let movementDuration: Double = 0.3
-                    
-                    var movement:CGFloat = 0
-                    if up{
-                        movement = movementDistance
-                    }
-                    else{
-                        movement = -movementDistance
-                    }
-                    UIView.beginAnimations("animateTextField", context: nil)
-                    UIView.setAnimationBeginsFromCurrentState(true)
-                    UIView.setAnimationDuration(movementDuration)
-                    self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
-                    UIView.commitAnimations()
-                }
                 
                 
                 //let annotationNode = LocationAnnotationNode(location: nil, image: image)
