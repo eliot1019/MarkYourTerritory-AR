@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var postView = UITextView()
     var captionUnderline = UIView()
     var isUsingKeyboard = false
+    var submitButton = UIButton()
     var userText: String = ""
     var blurView = UIVisualEffectView()
     var geoQueryTimer: Timer!
@@ -63,6 +64,21 @@ class ViewController: UIViewController {
 
     }
     
+    @objc func submitButtonClicked(_ sender: UIButton!) {
+        postView.resignFirstResponder()
+        self.view.endEditing(true)
+        blurView.removeFromSuperview()
+        self.isBlur = false
+        postView.removeFromSuperview()
+        self.textIsShown = false
+        userText = postView.text!
+        captionUnderline.removeFromSuperview()
+        submitButton.removeFromSuperview()
+        let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
+        annotationNode.scaleRelativeToDistance = true
+        sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
@@ -97,10 +113,7 @@ class ViewController: UIViewController {
                     postView.layer.shadowOffset = CGSize(width: 0, height: 0)
                     postView.layer.shadowOpacity = 0.6
                     postView.layer.shadowRadius = 0.5
-                    
                     postView.becomeFirstResponder()
-                    //isUsingKeyboard = true
-                    
                     postView.delegate = self
                     postView.isScrollEnabled = false
                     postView.isScrollEnabled = false
@@ -109,6 +122,16 @@ class ViewController: UIViewController {
                     view.addSubview(postView)
                     self.textIsShown = true
                 }
+                
+                submitButton = UIButton(frame: CGRect(x: view.frame.width * 3/4 - 15, y: 10, width: 67, height: 29))
+                submitButton.layoutIfNeeded()
+                submitButton.setTitle("Post", for: .normal)
+                submitButton.setTitleColor(UIColor.purple, for: .normal)
+                submitButton.layer.cornerRadius = 5
+                submitButton.addTarget(self, action: #selector(submitButtonClicked(_:)), for: .touchUpInside)
+                submitButton.backgroundColor = UIColor.white
+                view.addSubview(submitButton)
+                
                 
                 
                 captionUnderline = UIView(frame: CGRect(x: 30, y: (view.frame.height / 2) + 30, width: view.frame.width - 60, height: 2))
