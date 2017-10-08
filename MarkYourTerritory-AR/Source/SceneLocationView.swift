@@ -258,8 +258,9 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
         let sceneNode = self.sceneNode else {
             return
         }
-        
-        locationNode.location = currentLocation
+        //Move down height by 0.2 when addLocationNodeForCurrentPosition
+        let modifiedLocation = CLLocation(coordinate: currentLocation.coordinate, altitude: currentLocation.altitude - 0.2)
+        locationNode.location = modifiedLocation
         
         ///Location is not changed after being added when using core location data only for location estimates
         if locationEstimateMethod == .coreLocationDataOnly {

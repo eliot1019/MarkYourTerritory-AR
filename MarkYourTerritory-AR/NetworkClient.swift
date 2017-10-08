@@ -16,7 +16,7 @@ import FirebaseInstanceID
 
 class NetworkClient: NSObject {
     static let shared = NetworkClient()
-    
+
     var ref: DatabaseReference!
     var geoFire: GeoFire!
     var circleQuery: GFCircleQuery?
@@ -24,11 +24,13 @@ class NetworkClient: NSObject {
     
     override init() {
         super.init()
-        
+
         ref = Database.database().reference()
+
         geoFire = GeoFire(firebaseRef: ref)
+
     }
-    
+
     ///Completion passes back a string of the newly created pin id
     ///If post fails, String is nil
     func postPin(pin: Pin, completion: @escaping (String?) -> Void) {
@@ -36,19 +38,24 @@ class NetworkClient: NSObject {
         let pinId = childRef.key
         print("ref: \(ref)")
         print("childRef: \(childRef)")
-
-        //childRef.setValue()
+        var pin = pin
+        pin.firebaseKey = pinId //must be set as we use this for hashing
+        
         childRef.setValue(pin.toDictionary(), withCompletionBlock: {(error, snapshot) in
             guard error == nil else {
                 print(error?.localizedDescription as Any)
                 completion(nil)
                 return
             }
+            
+            //We add our pin to the set so that our observer does not create a duplicate node
+            self.pins.insert(pin)
+            
             print("Completed postPin successfully")
             completion(pinId)
-            
+
         })
-        
+
     }
     
     func getPin(firebaseKey: String, completion: @escaping (Pin?) -> Void) {
@@ -102,13 +109,13 @@ class NetworkClient: NSObject {
 
                         //Create a AnnotationNode
                         let pinCoord = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.lon)
-                        
                         let pinLocation = CLLocation(coordinate: pinCoord, altitude: currentAlt)
-                        let testPinImage = UIImage(named: "bear")!
-                        let pinLocationNode = LocationAnnotationNode(location: pinLocation, image: testPinImage)
+                        let pinLocationNode = LocationAnnotationNode(location: pinLocation, theText: pin.data)
                         pinLocationNode.continuallyAdjustNodePositionWhenWithinRange = false
                         pinLocationNode.scaleRelativeToDistance = true
                         callback(pinLocationNode)
+                    } else {
+                        print("\(key) was already in set. Not creating annotation node")
                     }
                 })
             })
@@ -118,5 +125,6 @@ class NetworkClient: NSObject {
         self.circleQuery!.center = center
         
     }
-    
 }
+
+

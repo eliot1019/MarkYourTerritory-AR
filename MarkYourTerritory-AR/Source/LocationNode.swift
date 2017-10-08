@@ -9,6 +9,7 @@
 import Foundation
 import SceneKit
 import CoreLocation
+import SpriteKit
 
 ///A location node can be added to a scene using a coordinate.
 ///Its scale and position should not be adjusted, as these are used for scene layout purposes
@@ -67,11 +68,45 @@ open class LocationAnnotationNode: LocationNode {
     ///Scaling relative to distance may be useful with local navigation-based uses
     ///For landmarks in the distance, the default is correct
     public var scaleRelativeToDistance = false
+
+
+    
+    public init(location: CLLocation?, theText: String) {
+        let textHeight = Utilities.getHeight(toDisplay: theText, width: 60, font: UIFont(name: "Avenir", size: 13)!)
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: textHeight))
+        label.text = theText
+        label.backgroundColor = UIColor.white
+        label.textColor = UIColor.black
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.lineBreakMode = .byWordWrapping
+        
+        self.image = Utilities.generateImageFromView(inputView: label)
+        
+        let plane = SCNPlane(width: image.size.width / 100, height: image.size.height / 100)
+        plane.firstMaterial!.diffuse.contents = image
+        plane.firstMaterial!.lightingModel = .constant
+        
+        annotationNode = SCNNode()
+        annotationNode.geometry = plane
+        
+        super.init(location: location)
+        
+        let billboardConstraint = SCNBillboardConstraint()
+        billboardConstraint.freeAxes = SCNBillboardAxis.Y
+        constraints = [billboardConstraint]
+        
+        addChildNode(annotationNode)
+        
+        
+        
+    }
+
     
     public init(location: CLLocation?, image: UIImage) {
         self.image = image
-        // Scaling image relative to distance so it is not a fixed size
-        scaleRelativeToDistance = true
         
         let plane = SCNPlane(width: image.size.width / 100, height: image.size.height / 100)
         plane.firstMaterial!.diffuse.contents = image
