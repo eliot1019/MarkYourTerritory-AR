@@ -15,11 +15,13 @@ enum PinType : String, Codable {
 
 struct Pin: Codable, Hashable {
     // Currently is the ISO Date as a string. Not unique
-    var id: String = ""
+    var time: String = ""
     var lat: Double = 0.0
     var lon: Double = 0.0
     var type: PinType = .text
     var user: String = "Anon"
+    var data: String = "" //If type is text, this will be our data, otherwise url
+    
     var firebaseKey: String = ""
     
     var hashValue: Int {
@@ -31,8 +33,8 @@ struct Pin: Codable, Hashable {
     }
     
     init(dict: [String: AnyObject]) {
-        if let id = dict["id"] as? String {
-            self.id = id
+        if let time = dict["time"] as? String {
+            self.time = time
         }
         if let lat = dict["lat"] as? Double {
             self.lat = lat
@@ -46,14 +48,19 @@ struct Pin: Codable, Hashable {
         if let user = dict["user"] as? String {
             self.user = user
         }
+        if let data = dict["data"] as? String {
+            self.data = data
+        }
+        
     }
     
-    init(id: String, lat: Double, lon: Double, type: PinType, user:String) {
-        self.id = id
+    init(time: String, lat: Double, lon: Double, type: PinType, user:String, data:String) {
+        self.time = time
         self.lat = lat
         self.lon = lon
         self.type = type
         self.user = user
+        self.data = data
         self.firebaseKey = ""
     }
     
@@ -61,13 +68,13 @@ struct Pin: Codable, Hashable {
 
 extension Pin: Serializable {
     var properties: Array<String> {
-        return ["id", "lat", "lon", "type", "user"]
+        return ["time", "lat", "lon", "type", "user", "data"]
     }
     
     func valueForKey(key: String) -> Any? {
         switch key {
-        case "id":
-            return id
+        case "time":
+            return time
         case "lat":
             return lat
         case "lon":
@@ -76,6 +83,8 @@ extension Pin: Serializable {
             return type.rawValue
         case "user":
             return user
+        case "data":
+            return data
         default:
             return nil
         }

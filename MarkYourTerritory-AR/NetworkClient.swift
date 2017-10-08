@@ -38,13 +38,19 @@ class NetworkClient: NSObject {
         let pinId = childRef.key
         print("ref: \(ref)")
         print("childRef: \(childRef)")
-
+        var pin = pin
+        pin.firebaseKey = pinId //must be set as we use this for hashing
+        
         childRef.setValue(pin.toDictionary(), withCompletionBlock: {(error, snapshot) in
             guard error == nil else {
                 print(error?.localizedDescription as Any)
                 completion(nil)
                 return
             }
+            
+            //We add our pin to the set so that our observer does not create a duplicate node
+            self.pins.insert(pin)
+            
             print("Completed postPin successfully")
             completion(pinId)
 
@@ -82,22 +88,35 @@ class NetworkClient: NSObject {
 
     }
     
-    /// Observes pins created in a 500m radius around a center
+    /// Observes pins created in a 200m radius around a center
     ///If its the first time you call this, it creates circlequery and starts observing. Otherwise, it just updates the center
-    func updateGeoQuery(lat: Double, lon: Double) {
+    ///Callback is a function that will take a node and add it to sceneLocationView
+    func updateGeoQuery(lat: Double, lon: Double, currentAlt: Double = 5, callback: @escaping (LocationAnnotationNode, Pin) -> Void) {
         let center = CLLocation(latitude: lat, longitude: lon)
 
         //If first call, we init circleQuery
         if self.circleQuery == nil {
-            // Query locations at coord with a radius of 500 meters
-            self.circleQuery = geoFire.query(at: center, withRadius: 0.5)
+            // Query locations at coord with a radius of 200 meters
+            self.circleQuery = geoFire.query(at: center, withRadius: 0.2)
             self.circleQuery!.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
                 print("Key '\(key)' entered the search area and is at location '\(location)'")
                 self.getPin(firebaseKey: key, completion: { pin in
                     guard let pin = pin else { return }
-                    print("Inserting pin \(pin.firebaseKey) into set")
-                    self.pins.insert(pin)
-                    
+                    let wasNotInSet = self.pins.insert(pin) //returns tuple --> read doc if confused
+                    if wasNotInSet.inserted {
+                        print("Inserting pin \(pin.firebaseKey) into set")
+                        print("Creating annotation node")
+
+                        //Create a AnnotationNode
+                        let pinCoord = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.lon)
+                        let pinLocation = CLLocation(coordinate: pinCoord, altitude: currentAlt)
+                        let pinLocationNode = LocationAnnotationNode(location: pinLocation, theText: pin.data)
+                        pinLocationNode.continuallyAdjustNodePositionWhenWithinRange = false
+                        pinLocationNode.scaleRelativeToDistance = true
+                        callback(pinLocationNode, pin)
+                    } else {
+                        print("\(key) was already in set. Not creating annotation node")
+                    }
                 })
             })
         }
