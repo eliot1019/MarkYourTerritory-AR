@@ -16,16 +16,16 @@ import FirebaseInstanceID
 
 class NetworkClient: NSObject {
     static let shared = NetworkClient()
-    
+
     var ref: DatabaseReference!
 
     override init() {
         super.init()
-        
+
         ref = Database.database().reference()
-        
+
     }
-    
+
     ///Completion passes back a string of the newly created pin id
     ///If post fails, String is nil
     func postPin(pin: Pin, completion: @escaping (String?) -> Void) {
@@ -34,7 +34,7 @@ class NetworkClient: NSObject {
         print("ref: \(ref)")
         print("childRef: \(childRef)")
 
-        //childRef.setValue()
+        childRef.setValue()
         childRef.setValue(pin.toDictionary(), withCompletionBlock: {(error, snapshot) in
             guard error == nil else {
                 print(error?.localizedDescription as Any)
@@ -43,10 +43,12 @@ class NetworkClient: NSObject {
             }
             print("Completed postPin successfully")
             completion(pinId)
-            
+
         })
-        
+
     }
-    
-    
+
+
 }
+
+
