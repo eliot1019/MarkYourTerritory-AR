@@ -91,7 +91,7 @@ class NetworkClient: NSObject {
     /// Observes pins created in a 200m radius around a center
     ///If its the first time you call this, it creates circlequery and starts observing. Otherwise, it just updates the center
     ///Callback is a function that will take a node and add it to sceneLocationView
-    func updateGeoQuery(lat: Double, lon: Double, currentAlt: Double = 5, callback: @escaping (LocationAnnotationNode) -> Void) {
+    func updateGeoQuery(lat: Double, lon: Double, currentAlt: Double = 5, callback: @escaping (LocationAnnotationNode, Pin) -> Void) {
         let center = CLLocation(latitude: lat, longitude: lon)
 
         //If first call, we init circleQuery
@@ -113,7 +113,7 @@ class NetworkClient: NSObject {
                         let pinLocationNode = LocationAnnotationNode(location: pinLocation, theText: pin.data)
                         pinLocationNode.continuallyAdjustNodePositionWhenWithinRange = false
                         pinLocationNode.scaleRelativeToDistance = true
-                        callback(pinLocationNode)
+                        callback(pinLocationNode, pin)
                     } else {
                         print("\(key) was already in set. Not creating annotation node")
                     }
