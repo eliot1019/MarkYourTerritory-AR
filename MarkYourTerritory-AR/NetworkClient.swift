@@ -39,7 +39,6 @@ class NetworkClient: NSObject {
         print("ref: \(ref)")
         print("childRef: \(childRef)")
 
-        childRef.setValue()
         childRef.setValue(pin.toDictionary(), withCompletionBlock: {(error, snapshot) in
             guard error == nil else {
                 print(error?.localizedDescription as Any)

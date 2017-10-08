@@ -103,7 +103,9 @@ open class LocationAnnotationNode: LocationNode {
         material.isDoubleSided = true
         material.diffuse.contents = skScene
         plane.materials = [material]
-        let node = SCNNode(geometry: plane)
+//        let annotationNode = SCNNode(geometry: plane)
+        annotationNode = SCNNode()
+        annotationNode.geometry = plane
         super.init(location: location)
         addChildNode(annotationNode)
         //scene.rootNode.addChildNode(node)
@@ -125,6 +127,7 @@ open class LocationAnnotationNode: LocationNode {
 //
 //        addChildNode(annotationNode)
     }
+    
     // FUTURE if we want to be able to use images instead of just text
 //    public init(location: CLLocation?, image: UIImage) {
 //        self.image = image
