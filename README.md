@@ -10,5 +10,6 @@ The project uses ARKit and an open source ARKit-CoreLocation framework.
 This allowed us to be able to connect the user's location to pin their marked messages in an AR world. 
 
 Firebase was used to store all our data related to a pin (user, latitude, longitude, data) and GeoFire, a Firebase extension, was used to store and retrieve latitude and longitude points.
-For Geoqueries of a certain radius in our backend, we utilize the [Geohash algorithm] https://en.wikipedia.org/wiki/Geohash .
+
+For Geoqueries of a certain radius in our backend, we utilize the [Geohash algorithm](https://en.wikipedia.org/wiki/Geohash).
 
