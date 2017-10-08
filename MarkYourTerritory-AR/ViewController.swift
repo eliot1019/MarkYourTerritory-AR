@@ -75,18 +75,21 @@ class ViewController: UIViewController {
         userText = postView.text!
         captionUnderline.removeFromSuperview()
         submitButton.removeFromSuperview()
+        threeDButton.removeFromSuperview()
         let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
         annotationNode.scaleRelativeToDistance = true
         sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
     }
     
-//    @objc func threeDButtonClicked(_ sender: UIButton!) {
-//        if threeDButton.state == .normal {
-//            threeDButton.state = .selected
-//        } else {
-//            
-//        }
-//    }
+    @objc func threeDButtonClicked(_ sender: UIButton!) {
+        if threeDButton.isSelected {
+            print("false")
+            threeDButton.isSelected = false
+        } else {
+            print("true")
+            threeDButton.isSelected = true
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -131,25 +134,24 @@ class ViewController: UIViewController {
                     self.textIsShown = true
                 }
                 
-                submitButton = UIButton(frame: CGRect(x: view.frame.width * 3/4 - 15, y: 10, width: 67, height: 29))
+                submitButton = UIButton(frame: CGRect(x: view.frame.width * 3/4 - 15, y: 30, width: 67, height: 29))
                 submitButton.layoutIfNeeded()
                 submitButton.setTitle("Post", for: .normal)
-                submitButton.setTitleColor(UIColor.purple, for: .normal)
+                submitButton.setTitleColor(UIColor.black, for: .normal)
                 submitButton.layer.cornerRadius = 5
                 submitButton.addTarget(self, action: #selector(submitButtonClicked(_:)), for: .touchUpInside)
                 submitButton.backgroundColor = UIColor.white
                 view.addSubview(submitButton)
                 
-                threeDButton = UIButton(frame: CGRect(x: 10, y: 10, width: 67, height: 29))
+                threeDButton = UIButton(frame: CGRect(x: 20, y: 30, width: 150, height: 30))
                 threeDButton.layoutIfNeeded()
                 threeDButton.setTitle("Enable 3D", for: .normal)
-                threeDButton.setTitleColor(UIColor.purple, for: .normal)
+                threeDButton.setTitle("Enable 2D", for: .selected)
+                threeDButton.setTitleColor(UIColor.black, for: .normal)
                 threeDButton.layer.cornerRadius = 5
                 threeDButton.addTarget(self, action: #selector(threeDButtonClicked(_:)), for: .touchUpInside)
                 threeDButton.backgroundColor = UIColor.white
                 
-                threeDButton.setImage(UIImage(named: "Unchecked"), for: .normal)
-                threeDButton.setImage(UIImage(named: "Checked"), for: .selected)
                 
                 view.addSubview(threeDButton)
                 
