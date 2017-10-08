@@ -130,6 +130,10 @@ class ViewController: UIViewController {
                     guard error == nil else {
                         return
                     }
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude:pin.lon)
+                    annotation.subtitle = pin.user
+                    self.mapView.addAnnotation(annotation)
                 })
             })
         }
