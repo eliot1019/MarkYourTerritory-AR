@@ -107,8 +107,9 @@ class ViewController: UIViewController {
         self.isBlur = false
         self.textIsShown = false
         userText = postView.text!
-
+        
         dismissBlur()
+
         let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
         annotationNode.scaleRelativeToDistance = true
         sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
@@ -149,11 +150,14 @@ class ViewController: UIViewController {
         
     }
     
+
     @objc func threeDButtonClicked(_ sender: UIButton!) {
-        if threeDButton.state == .normal {
-           // threeDButton.state = .selected
+        if threeDButton.isSelected {
+            print("false")
+            threeDButton.isSelected = false
         } else {
-            
+            print("true")
+            threeDButton.isSelected = true
         }
     }
     
@@ -213,6 +217,7 @@ class ViewController: UIViewController {
                 submitButton = UIButton(frame: CGRect(x: view.frame.width - 45, y: 10, width: 40, height: 40))
                 submitButton.layoutIfNeeded()
                 submitButton.setImage(UIImage(named: "paint"), for: .normal)
+
                 submitButton.addTarget(self, action: #selector(submitButtonClicked(_:)), for: .touchUpInside)
                 blurView?.addSubview(submitButton)
                 
@@ -222,9 +227,10 @@ class ViewController: UIViewController {
                 threeDButton.setImage(UIImage(named: "3d-selected"), for: .selected)
                 threeDButton.addTarget(self, action: #selector(threeDButtonClicked(_:)), for: .touchUpInside)
                 blurView?.addSubview(threeDButton)
+
                 
                 captionUnderline = UIView(frame: CGRect(x: 30, y: (view.frame.height / 2) + 30, width: view.frame.width - 60, height: 2))
-                captionUnderline.backgroundColor = UIColor.red
+                captionUnderline.backgroundColor = UIColor(red:0.12, green:0.85, blue:0.82, alpha:1.0)
                 blurView?.addSubview(captionUnderline)
                 
                 
