@@ -42,6 +42,13 @@ class ViewController: UIViewController {
 
         geoQueryTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateUserLocation), userInfo: nil, repeats: true)
         
+        
+        mapButton.frame = CGRect(
+            x: 0,
+            y: self.view.frame.size.height - 65,
+            width: 57,
+            height: 57)
+        mapButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         mapButton.addTarget(self, action: #selector(mapPressed), for: .touchUpInside)
         mapButton.setImage(UIImage(named: "map"), for: .normal)
         view.addSubview(mapButton)
@@ -85,14 +92,6 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         sceneLocationView.frame = view.bounds
-
-        mapButton.frame = CGRect(
-            x: 0,
-            y: self.view.frame.size.height - 65,
-            width: 57,
-            height: 57)
-        mapButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
-
         
         
         mapView.frame = CGRect(
