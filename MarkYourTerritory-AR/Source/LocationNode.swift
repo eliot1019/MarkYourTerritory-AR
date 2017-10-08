@@ -76,7 +76,7 @@ open class LocationAnnotationNode: LocationNode {
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: textHeight))
         label.text = theText
-        label.backgroundColor = UIColor.white
+        label.backgroundColor = UIColor.clear
         label.textColor = UIColor.black
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0

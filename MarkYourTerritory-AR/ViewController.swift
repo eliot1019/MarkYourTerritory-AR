@@ -12,12 +12,15 @@ import ARKit
 import CoreLocation
 import MapKit
 
-class ViewController: UIViewController{
+class ViewController: UIViewController {
     var sceneLocationView = SceneLocationView()
     var isBlur = false
     var textIsShown = false
-    var tField = UITextField()
-    var userText:String = ""
+    var postView = UITextView()
+    var captionUnderline = UIView()
+    var isUsingKeyboard = false
+    var submitButton = UIButton()
+    var userText: String = ""
     var blurView = UIVisualEffectView()
     var geoQueryTimer: Timer!
     //var testPin = Pin(id: Utilities.getDateString(isoFormat: true), lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
@@ -77,10 +80,33 @@ class ViewController: UIViewController{
             height: self.view.frame.size.height / 2)
     }
     
+    @objc func submitButtonClicked(_ sender: UIButton!) {
+        postView.resignFirstResponder()
+        self.view.endEditing(true)
+        blurView.removeFromSuperview()
+        self.isBlur = false
+        postView.removeFromSuperview()
+        self.textIsShown = false
+        userText = postView.text!
+        captionUnderline.removeFromSuperview()
+        submitButton.removeFromSuperview()
+        let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
+        annotationNode.scaleRelativeToDistance = true
+        sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
+        
         if let touch = touches.first {
+            if isUsingKeyboard {
+                self.view.endEditing(true)
+                isUsingKeyboard = !isUsingKeyboard
+            } else {
+                isUsingKeyboard = !isUsingKeyboard
+            }
+            
             if touch.view != nil {
 
                 let location = touch.location(in: self.view)
@@ -98,23 +124,59 @@ class ViewController: UIViewController{
                 }
 
 
-                
                 if !textIsShown {
-                    tField = UITextField(frame: CGRect(x: UIScreen.main.bounds.width * (1/3), y: UIScreen.main.bounds.height / 2, width: UIScreen.main.bounds.width - 20, height: 0.1 * UIScreen.main.bounds.height))
-                    tField.layoutIfNeeded()
-                    tField.adjustsFontSizeToFitWidth = true
-                    tField.adjustsFontSizeToFitWidth = true
-                    tField.returnKeyType = .done
-                    tField.layer.shadowRadius = 2.0
-                    tField.textColor = UIColor.white
-                    tField.layer.masksToBounds = true
-                    tField.placeholder = "insert text"
-                    tField.becomeFirstResponder()
-                    tField.delegate = self
-                    self.view.addSubview(tField)
+    //                captionTextView.text = captionPlaceHolder
+                    postView = UITextView(frame: CGRect(x: 30, y: (view.frame.height / 2) - 50, width: view.frame.width - 60, height: 100))
+                    postView.textColor = UIColor.white
+                    postView.backgroundColor = UIColor.clear
+                    postView.tintColor = UIColor.white
+                    postView.layer.shadowOffset = CGSize(width: 0, height: 0)
+                    postView.layer.shadowOpacity = 0.6
+                    postView.layer.shadowRadius = 0.5
+                    postView.becomeFirstResponder()
+                    postView.delegate = self
+                    postView.isScrollEnabled = false
+                    postView.isScrollEnabled = false
+                    postView.font = UIFont.boldSystemFont(ofSize: 15)
+                    postView.textContainer.maximumNumberOfLines = 4
+                    view.addSubview(postView)
                     self.textIsShown = true
                 }
                 
+
+                submitButton = UIButton(frame: CGRect(x: view.frame.width * 3/4 - 15, y: 10, width: 67, height: 29))
+                submitButton.layoutIfNeeded()
+                submitButton.setTitle("Post", for: .normal)
+                submitButton.setTitleColor(UIColor.purple, for: .normal)
+                submitButton.layer.cornerRadius = 5
+                submitButton.addTarget(self, action: #selector(submitButtonClicked(_:)), for: .touchUpInside)
+                submitButton.backgroundColor = UIColor.white
+                view.addSubview(submitButton)
+                
+                
+                
+                captionUnderline = UIView(frame: CGRect(x: 30, y: (view.frame.height / 2) + 30, width: view.frame.width - 60, height: 2))
+                captionUnderline.backgroundColor = UIColor.red
+                view.addSubview(captionUnderline)
+                
+                //To move the textfield up or down
+                func animateTextView(textView: UITextView, up: Bool){
+                    let movementDistance:CGFloat = (-150)
+                    let movementDuration: Double = 0.3
+                    
+                    var movement:CGFloat = 0
+                    if up{
+                        movement = movementDistance
+                    }
+                    else{
+                        movement = -movementDistance
+                    }
+                    UIView.beginAnimations("animateTextField", context: nil)
+                    UIView.setAnimationBeginsFromCurrentState(true)
+                    UIView.setAnimationDuration(movementDuration)
+                    self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+                    UIView.commitAnimations()
+                }
                 
                 
                 //let annotationNode = LocationAnnotationNode(location: nil, image: image)
@@ -224,6 +286,7 @@ extension ViewController: MKMapViewDelegate {
     }
 }
 
+<<<<<<< HEAD
 //MARK: UITextFieldDelegate
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -261,4 +324,66 @@ extension ViewController: UITextFieldDelegate {
         
         return true
     }
+=======
+extension ViewController: UITextViewDelegate {
+    //Hides keyboard when tapped around
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
+
+    //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    //        print("made it here fam")
+    //        textField.resignFirstResponder()
+    //        self.view.endEditing(true)
+    //        blurView.removeFromSuperview()
+    //        self.isBlur = false
+    //        textField.removeFromSuperview()
+    //        self.textIsShown = false
+    //        userText = textField.text!
+    //        let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
+    //        annotationNode.scaleRelativeToDistance = true
+    //        sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
+    //        return true
+    //    }
+
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        if (textView.text ==  captionPlaceHolder) {
+//            textView.text = ""
+//        }
+//        tapRecognizer.isEnabled = false
+//        self.animateTextView(textView: textView, up:true)
+//
+//    }
+
+
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if (textView.text ==  "") {
+//            textView.text = captionPlaceHolder
+//        }
+//        tapRecognizer.isEnabled = true
+//        self.animateTextView(textView: textView, up:false)
+//        textView.resignFirstResponder()
+//
+//    }
+>>>>>>> e156b5e17bb7fad14e0b4a67fc2ec954456044ed
 }
+
+
+// Older version
+//extension ViewController: UITextFieldDelegate {
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        print("made it here fam")
+//        textField.resignFirstResponder()
+//        self.view.endEditing(true)
+//        blurView.removeFromSuperview()
+//        self.isBlur = false
+//        textField.removeFromSuperview()
+//        self.textIsShown = false
+//        userText = textField.text!
+//        let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
+//        annotationNode.scaleRelativeToDistance = true
+//        sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
+//        return true
+//    }
+//}
+
