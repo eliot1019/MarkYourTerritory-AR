@@ -17,7 +17,8 @@ class ViewController: UIViewController {
     var textIsShown = false
     var postView = UITextView()
     var captionUnderline = UIView()
-    var userText:String = ""
+    var isUsingKeyboard = false
+    var userText: String = ""
     var blurView = UIVisualEffectView()
     var geoQueryTimer: Timer!
     var testPin = Pin(id: Utilities.getDateString(isoFormat: true), lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
@@ -65,7 +66,15 @@ class ViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
+        
         if let touch = touches.first {
+            if isUsingKeyboard {
+                self.view.endEditing(true)
+                isUsingKeyboard = !isUsingKeyboard
+            } else {
+                isUsingKeyboard = !isUsingKeyboard
+            }
+            
             if touch.view != nil {
                 if !self.isBlur {
                     let blur = UIBlurEffect(style: .dark)
@@ -79,22 +88,30 @@ class ViewController: UIViewController {
                 //Test Geofire shit
                 NetworkClient.shared.updateGeoQuery(lat: testPin.lat, lon: testPin.lon)
 
+                if !textIsShown {
+    //                captionTextView.text = captionPlaceHolder
+                    postView = UITextView(frame: CGRect(x: 30, y: (view.frame.height / 2) - 50, width: view.frame.width - 60, height: 100))
+                    postView.textColor = UIColor.white
+                    postView.backgroundColor = UIColor.clear
+                    postView.tintColor = UIColor.white
+                    postView.layer.shadowOffset = CGSize(width: 0, height: 0)
+                    postView.layer.shadowOpacity = 0.6
+                    postView.layer.shadowRadius = 0.5
+                    
+                    postView.becomeFirstResponder()
+                    //isUsingKeyboard = true
+                    
+                    postView.delegate = self
+                    postView.isScrollEnabled = false
+                    postView.isScrollEnabled = false
+                    postView.font = UIFont.boldSystemFont(ofSize: 15)
+                    postView.textContainer.maximumNumberOfLines = 4
+                    view.addSubview(postView)
+                    self.textIsShown = true
+                }
                 
-//                captionTextView.text = captionPlaceHolder
-                postView = UITextView(frame: CGRect(x: 30, y: view.frame.height - 70, width: view.frame.width - 60, height: 50))
-                postView.textColor = UIColor.white
-                postView.backgroundColor = UIColor.clear
-                postView.tintColor = UIColor.white
-                postView.layer.shadowOffset = CGSize(width: 0, height: 0)
-                postView.layer.shadowOpacity = 0.6
-                postView.layer.shadowRadius = 0.5
-                //postView.delegate = self
-                postView.isScrollEnabled = false
-                postView.font = UIFont.boldSystemFont(ofSize: 15)
-                postView.textContainer.maximumNumberOfLines = 4
-                view.addSubview(postView)
                 
-                captionUnderline = UIView(frame: CGRect(x: 30, y: view.frame.height - 20, width: view.frame.width - 60, height: 2))
+                captionUnderline = UIView(frame: CGRect(x: 30, y: (view.frame.height / 2) + 30, width: view.frame.width - 60, height: 2))
                 captionUnderline.backgroundColor = UIColor.red
                 view.addSubview(captionUnderline)
                 
@@ -117,25 +134,6 @@ class ViewController: UIViewController {
                     UIView.commitAnimations()
                 }
                 
-
-                
-//                if !textIsShown {
-//                    tField = UITextField(frame: CGRect(x: UIScreen.main.bounds.width * (1/3), y: UIScreen.main.bounds.height / 2, width: UIScreen.main.bounds.width - 20, height: 0.1 * UIScreen.main.bounds.height))
-//                    tField.layoutIfNeeded()
-//                    tField.adjustsFontSizeToFitWidth = true
-//                    tField.adjustsFontSizeToFitWidth = true
-//                    tField.returnKeyType = .done
-//                    tField.layer.shadowRadius = 2.0
-//                    tField.textColor = UIColor.black
-//                    tField.backgroundColor = UIColor.white
-//                    tField.layer.masksToBounds = true
-//                    tField.placeholder = "insert text"
-//                    tField.becomeFirstResponder()
-//                    tField.delegate = self
-//                    self.view.addSubview(tField)
-//                    self.textIsShown = true
-//                }
-                
                 let location = touch.location(in: self.view)
                 
                 //let annotationNode = LocationAnnotationNode(location: nil, image: image)
@@ -153,12 +151,27 @@ class ViewController: UIViewController {
     }
 }
 
-//extension ViewController: UITextViewDelegate {
-//    //Hides keyboard when tapped around
-////    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-////        self.view.endEditing(true)
-////    }
-//
+extension ViewController: UITextViewDelegate {
+    //Hides keyboard when tapped around
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
+
+    //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    //        print("made it here fam")
+    //        textField.resignFirstResponder()
+    //        self.view.endEditing(true)
+    //        blurView.removeFromSuperview()
+    //        self.isBlur = false
+    //        textField.removeFromSuperview()
+    //        self.textIsShown = false
+    //        userText = textField.text!
+    //        let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
+    //        annotationNode.scaleRelativeToDistance = true
+    //        sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
+    //        return true
+    //    }
+
 //    func textViewDidBeginEditing(_ textView: UITextView) {
 //        if (textView.text ==  captionPlaceHolder) {
 //            textView.text = ""
@@ -167,8 +180,8 @@ class ViewController: UIViewController {
 //        self.animateTextView(textView: textView, up:true)
 //
 //    }
-//
-//
+
+
 //    func textViewDidEndEditing(_ textView: UITextView) {
 //        if (textView.text ==  "") {
 //            textView.text = captionPlaceHolder
@@ -178,7 +191,7 @@ class ViewController: UIViewController {
 //        textView.resignFirstResponder()
 //
 //    }
-//}
+}
 
 
 // Older version
