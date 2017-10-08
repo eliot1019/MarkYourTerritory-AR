@@ -29,7 +29,7 @@ class ViewController: UIViewController {
             }
             print("Created pinId \(pinId)")
             NetworkClient.shared.setGeoFireLocation(pin: self.testPin, firebaseID: pinId, completion: { error in
-                guard let error = error else {
+                guard error == nil else {
                     return
                 }
             })

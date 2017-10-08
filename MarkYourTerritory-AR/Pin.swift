@@ -54,7 +54,7 @@ struct Pin: Codable, Hashable {
         self.lon = lon
         self.type = type
         self.user = user
-        firebaseKey = ""
+        self.firebaseKey = ""
     }
     
 }
