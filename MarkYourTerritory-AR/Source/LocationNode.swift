@@ -81,17 +81,17 @@ open class LocationAnnotationNode: LocationNode {
 //        label.text = theText
         
         // Start of SceneKit try
-        let skScene = SKScene(size: CGSize(width: 200, height: 200))
+        let skScene = SKScene(size: CGSize(width: 50, height: 50))
         skScene.backgroundColor = UIColor.clear
         
-        let rectangle = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 200, height: 200), cornerRadius: 10)
-        rectangle.fillColor = #colorLiteral(red: 0.807843148708344, green: 0.0274509806185961, blue: 0.333333343267441, alpha: 1.0)
-        rectangle.strokeColor = #colorLiteral(red: 0.439215689897537, green: 0.0117647061124444, blue: 0.192156866192818, alpha: 1.0)
-        rectangle.lineWidth = 5
+        let rectangle = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 50, height: 50), cornerRadius: 10)
+        rectangle.fillColor = UIColor.clear
+        rectangle.strokeColor = UIColor.black
+        rectangle.lineWidth = 3
         rectangle.alpha = 0.4
         let labelNode = SKLabelNode(text: theText)
         labelNode.fontSize = 20
-        labelNode.fontName = "San Fransisco"
+        labelNode.fontName = "Avenir"
         labelNode.position = CGPoint(x:100,y:100)
         skScene.addChild(rectangle)
         skScene.addChild(labelNode)
