@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     var isUsingKeyboard = false
     var submitButton = UIButton()
     var userText: String = ""
+    var user: String = "Anonymous"
     var blurView = UIVisualEffectView()
     var geoQueryTimer: Timer!
     //var testPin = Pin(id: Utilities.getDateString(isoFormat: true), lat: 37.86727740, lon: -122.25776656, type: PinType.text, user: "eliot")
@@ -46,6 +47,20 @@ class ViewController: UIViewController {
         mapView.alpha = 0
         view.addSubview(mapView)
        // mapView.isHidden = true
+        
+        
+        let lastAlias = UserDefaults.standard.string(forKey: "user") ?? "Anonymous"
+        let alertController = UIAlertController(title: "Pick a name or go Anonymous!", message: "", preferredStyle: .alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = lastAlias
+        }
+        
+        let doneAction = UIAlertAction(title: "Ok", style: .cancel, handler: { alert -> Void in
+            let firstTextField = alertController.textFields![0] as UITextField
+            self.user = firstTextField.text ?? self.user
+            UserDefaults.standard.set(self.user, forKey: "user")
+        })
+        alertController.addAction(doneAction)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -286,7 +301,6 @@ extension ViewController: MKMapViewDelegate {
     }
 }
 
-<<<<<<< HEAD
 //MARK: UITextFieldDelegate
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -324,8 +338,6 @@ extension ViewController: UITextFieldDelegate {
         
         return true
     }
-=======
-extension ViewController: UITextViewDelegate {
     //Hides keyboard when tapped around
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        self.view.endEditing(true)
@@ -365,7 +377,6 @@ extension ViewController: UITextViewDelegate {
 //        textView.resignFirstResponder()
 //
 //    }
->>>>>>> e156b5e17bb7fad14e0b4a67fc2ec954456044ed
 }
 
 
