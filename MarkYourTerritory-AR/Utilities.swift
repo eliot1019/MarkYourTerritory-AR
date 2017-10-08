@@ -19,7 +19,7 @@ struct Utilities {
             options: NSStringDrawingOptions.usesLineFragmentOrigin,
             attributes: attributes, context: nil)
         print("Height needed for \(text) is \(rect.height)")
-        return rect.height
+        return rect.height + 3
         
     }
     
@@ -36,6 +36,14 @@ struct Utilities {
         }
         let dateString = dateFormatter.string(from: date as Date)
         return dateString
+    }
+    
+    static func generateImageFromView(inputView: UIView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, true, 0)
+        inputView.drawHierarchy(in: inputView.bounds, afterScreenUpdates: true)
+        let uiImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return uiImage
     }
     
 }

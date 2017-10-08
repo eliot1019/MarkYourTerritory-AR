@@ -56,8 +56,7 @@ open class LocationAnnotationNode: LocationNode {
     ///An image to use for the annotation
     ///When viewed from a distance, the annotation will be seen at the size provided
     ///e.g. if the size is 100x100px, the annotation will take up approx 100x100 points on screen.
-    // public let image: UIImage
-    // public let label: UILabel
+    public let image: UIImage
     
     ///Subnodes and adjustments should be applied to this subnode
     ///Required to allow scaling at the same time as having a 2D 'billboard' appearance
@@ -69,86 +68,61 @@ open class LocationAnnotationNode: LocationNode {
     ///Scaling relative to distance may be useful with local navigation-based uses
     ///For landmarks in the distance, the default is correct
     public var scaleRelativeToDistance = false
+
+
     
     public init(location: CLLocation?, theText: String) {
-        // Scaling image relative to distance so it is not a fixed size
-        scaleRelativeToDistance = true
+        let textHeight = Utilities.getHeight(toDisplay: theText, width: 60, font: UIFont(name: "Avenir", size: 13)!)
         
-//        label = UILabel(frame: CGRect())
-//        label.textColor = UIColor.darkGray
-//        label.adjustsFontSizeToFitWidth = true
-//        label.textAlignment = .left
-//        label.text = theText
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: textHeight))
+        label.text = theText
+        label.backgroundColor = UIColor.white
+        label.textColor = UIColor.black
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.lineBreakMode = .byWordWrapping
         
-        // Start of SceneKit try
-        let skScene = SKScene(size: CGSize(width: 50, height: 50))
-        skScene.backgroundColor = UIColor.clear
+        self.image = Utilities.generateImageFromView(inputView: label)
         
-        let rectangle = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 50, height: 50), cornerRadius: 10)
-        rectangle.fillColor = UIColor.clear
-        rectangle.strokeColor = UIColor.black
-        rectangle.lineWidth = 3
-        rectangle.alpha = 0.4
-        let labelNode = SKLabelNode(text: theText)
-        labelNode.fontSize = 20
-        labelNode.fontName = "Avenir"
-        labelNode.position = CGPoint(x:100,y:100)
-        skScene.addChild(rectangle)
-        skScene.addChild(labelNode)
+        let plane = SCNPlane(width: image.size.width / 100, height: image.size.height / 100)
+        plane.firstMaterial!.diffuse.contents = image
+        plane.firstMaterial!.lightingModel = .constant
         
-        
-        
-        let plane = SCNPlane(width: 20, height: 20)
-        let material = SCNMaterial()
-        material.isDoubleSided = true
-        material.diffuse.contents = skScene
-        plane.materials = [material]
-//        let annotationNode = SCNNode(geometry: plane)
         annotationNode = SCNNode()
         annotationNode.geometry = plane
-        super.init(location: location)
-        addChildNode(annotationNode)
-        //scene.rootNode.addChildNode(node)
-        //end of Scenekit try
         
-//        // TODO make this not just hardcoded you fool
-//        let plane = SCNPlane(width: 50, height: 50)
-//        plane.firstMaterial!.diffuse.contents = label
-//        plane.firstMaterial!.lightingModel = .constant
-//
-//        annotationNode = SCNNode()
-//        annotationNode.geometry = plane
-//
-//        super.init(location: location)
-//
-//        let billboardConstraint = SCNBillboardConstraint()
-//        billboardConstraint.freeAxes = SCNBillboardAxis.Y
-//        constraints = [billboardConstraint]
-//
-//        addChildNode(annotationNode)
+        super.init(location: location)
+        
+        let billboardConstraint = SCNBillboardConstraint()
+        billboardConstraint.freeAxes = SCNBillboardAxis.Y
+        constraints = [billboardConstraint]
+        
+        addChildNode(annotationNode)
+        
+        
+        
     }
+
     
-    // FUTURE if we want to be able to use images instead of just text
-//    public init(location: CLLocation?, image: UIImage) {
-//        self.image = image
-//        // Scaling image relative to distance so it is not a fixed size
-//        scaleRelativeToDistance = true
-//
-//        let plane = SCNPlane(width: image.size.width / 100, height: image.size.height / 100)
-//        plane.firstMaterial!.diffuse.contents = image
-//        plane.firstMaterial!.lightingModel = .constant
-//
-//        annotationNode = SCNNode()
-//        annotationNode.geometry = plane
-//
-//        super.init(location: location)
-//
-//        let billboardConstraint = SCNBillboardConstraint()
-//        billboardConstraint.freeAxes = SCNBillboardAxis.Y
-//        constraints = [billboardConstraint]
-//
-//        addChildNode(annotationNode)
-//    }
+    public init(location: CLLocation?, image: UIImage) {
+        self.image = image
+        
+        let plane = SCNPlane(width: image.size.width / 100, height: image.size.height / 100)
+        plane.firstMaterial!.diffuse.contents = image
+        plane.firstMaterial!.lightingModel = .constant
+        
+        annotationNode = SCNNode()
+        annotationNode.geometry = plane
+        
+        super.init(location: location)
+        
+        let billboardConstraint = SCNBillboardConstraint()
+        billboardConstraint.freeAxes = SCNBillboardAxis.Y
+        constraints = [billboardConstraint]
+        
+        addChildNode(annotationNode)
+    }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
