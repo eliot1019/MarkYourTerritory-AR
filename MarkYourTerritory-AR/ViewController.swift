@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     var captionUnderline = UIView()
     var isUsingKeyboard = false
     var submitButton = UIButton()
+    var threeDButton = UIButton()
     var userText: String = ""
     var blurView = UIVisualEffectView()
     var geoQueryTimer: Timer!
@@ -79,6 +80,14 @@ class ViewController: UIViewController {
         sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
     }
     
+//    @objc func threeDButtonClicked(_ sender: UIButton!) {
+//        if threeDButton.state == .normal {
+//            threeDButton.state = .selected
+//        } else {
+//            
+//        }
+//    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
@@ -114,7 +123,6 @@ class ViewController: UIViewController {
                     postView.layer.shadowOpacity = 0.6
                     postView.layer.shadowRadius = 0.5
                     postView.becomeFirstResponder()
-                    postView.delegate = self
                     postView.isScrollEnabled = false
                     postView.isScrollEnabled = false
                     postView.font = UIFont.boldSystemFont(ofSize: 15)
@@ -132,7 +140,18 @@ class ViewController: UIViewController {
                 submitButton.backgroundColor = UIColor.white
                 view.addSubview(submitButton)
                 
+                threeDButton = UIButton(frame: CGRect(x: 10, y: 10, width: 67, height: 29))
+                threeDButton.layoutIfNeeded()
+                threeDButton.setTitle("Enable 3D", for: .normal)
+                threeDButton.setTitleColor(UIColor.purple, for: .normal)
+                threeDButton.layer.cornerRadius = 5
+                threeDButton.addTarget(self, action: #selector(threeDButtonClicked(_:)), for: .touchUpInside)
+                threeDButton.backgroundColor = UIColor.white
                 
+                threeDButton.setImage(UIImage(named: "Unchecked"), for: .normal)
+                threeDButton.setImage(UIImage(named: "Checked"), for: .selected)
+                
+                view.addSubview(threeDButton)
                 
                 captionUnderline = UIView(frame: CGRect(x: 30, y: (view.frame.height / 2) + 30, width: view.frame.width - 60, height: 2))
                 captionUnderline.backgroundColor = UIColor.red
@@ -173,65 +192,4 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 }
-
-extension ViewController: UITextViewDelegate {
-    //Hides keyboard when tapped around
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        self.view.endEditing(true)
-//    }
-
-    //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    //        print("made it here fam")
-    //        textField.resignFirstResponder()
-    //        self.view.endEditing(true)
-    //        blurView.removeFromSuperview()
-    //        self.isBlur = false
-    //        textField.removeFromSuperview()
-    //        self.textIsShown = false
-    //        userText = textField.text!
-    //        let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
-    //        annotationNode.scaleRelativeToDistance = true
-    //        sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
-    //        return true
-    //    }
-
-//    func textViewDidBeginEditing(_ textView: UITextView) {
-//        if (textView.text ==  captionPlaceHolder) {
-//            textView.text = ""
-//        }
-//        tapRecognizer.isEnabled = false
-//        self.animateTextView(textView: textView, up:true)
-//
-//    }
-
-
-//    func textViewDidEndEditing(_ textView: UITextView) {
-//        if (textView.text ==  "") {
-//            textView.text = captionPlaceHolder
-//        }
-//        tapRecognizer.isEnabled = true
-//        self.animateTextView(textView: textView, up:false)
-//        textView.resignFirstResponder()
-//
-//    }
-}
-
-
-// Older version
-//extension ViewController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        print("made it here fam")
-//        textField.resignFirstResponder()
-//        self.view.endEditing(true)
-//        blurView.removeFromSuperview()
-//        self.isBlur = false
-//        textField.removeFromSuperview()
-//        self.textIsShown = false
-//        userText = textField.text!
-//        let annotationNode = LocationAnnotationNode(location: nil, theText: userText)
-//        annotationNode.scaleRelativeToDistance = true
-//        sceneLocationView.addLocationNodeForCurrentPosition(locationNode: annotationNode)
-//        return true
-//    }
-//}
 
