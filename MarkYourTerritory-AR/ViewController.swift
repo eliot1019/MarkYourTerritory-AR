@@ -21,20 +21,8 @@ class ViewController: UIViewController {
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
         
-        //Creating the postPin
-        NetworkClient.shared.postPin(pin: testPin, completion: { pinId in
-            guard let pinId = pinId else {
-                print("Error creating pin in Firebase")
-                return
-            }
-            print("Created pinId \(pinId)")
-            NetworkClient.shared.setGeoFireLocation(pin: self.testPin, firebaseID: pinId, completion: { error in
-                guard error == nil else {
-                    return
-                }
-            })
-        })
-        geoQueryTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.getUserLocation), userInfo: nil, repeats: true)
+
+        geoQueryTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateUserLocation), userInfo: nil, repeats: true)
         
     }
     
@@ -61,17 +49,37 @@ class ViewController: UIViewController {
         
         if let touch = touches.first {
             if touch.view != nil {
-                //Test Geofire shit
-                NetworkClient.shared.updateGeoQuery(lat: testPin.lat, lon: testPin.lon)
                 
+                //Creating the postPin
+                NetworkClient.shared.postPin(pin: testPin, completion: { pinId in
+                    guard let pinId = pinId else {
+                        print("Error creating pin in Firebase")
+                        return
+                    }
+                    print("Created pinId \(pinId)")
+                    NetworkClient.shared.setGeoFireLocation(pin: self.testPin, firebaseID: pinId, completion: { error in
+                        guard error == nil else {
+                            return
+                        }
+                    })
+                })
             }
         }
     }
     
-    @objc func getUserLocation() {
+    ///Updates location and calls updateGeoQuery
+    @objc func updateUserLocation() {
         if let currentLocation = sceneLocationView.currentLocation() {
             DispatchQueue.main.async {
                 //print(currentLocation)
+                print("test", currentLocation.altitude)
+                NetworkClient.shared.updateGeoQuery(lat: currentLocation.coordinate.latitude, lon: currentLocation.coordinate.longitude, currentAlt: currentLocation.altitude - 0.5,callback: { pinLocationNode in
+                    
+                    print("Adding location Node to sceneView")
+                    self.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: pinLocationNode)
+
+                })
+
             }
         }
     }
